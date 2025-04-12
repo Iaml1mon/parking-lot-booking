@@ -119,3 +119,20 @@ st.markdown("""
 - **Strengths**: Simple UI, fast deployment, low cost  
 - **Weaknesses**: No real-time slot data yet  
 - **Opportunities**: Add QR codes, payments, or real GPS slots  
+- **Threats**: Security if expanded, booking clashes
+""")
+
+# --- UI Prototypes ---
+st.markdown('<div class="section-title">🖥️ UI Prototypes (Fake Screens)</div>', unsafe_allow_html=True)
+
+st.markdown('<div class="prototype-box">🏠 Home Screen\n\n[Logo Here]\n\nWelcome to Smart Parking System\n\n[Button] Book Slot Now</div>', unsafe_allow_html=True)
+
+st.markdown('<div class="prototype-box">🗓️ Booking Page\n\n[Dropdown] Location: Sydney CBD\n[Date Picker] Date: 2025-04-12\n[Time Picker] Time: 3:00 PM\n[Input] Plate Number: ABC123\n[Button] Confirm Booking</div>', unsafe_allow_html=True)
+
+st.markdown('<div class="prototype-box">✅ Booking Confirmation\n\n\"Booking Confirmed for ABC123 at Sydney CBD on 12 April at 3:00 PM\"\n\n[Button] View My Bookings</div>', unsafe_allow_html=True)
+
+st.markdown('<div class="prototype-box">📋 My Bookings Table\n\n| Location | Date | Time | Plate |\n|----------|------|------|-------|\n| Sydney CBD | 12 Apr | 3:00 PM | ABC123 |\n| Parramatta | 13 Apr | 1:00 PM | XYZ999 |</div>', unsafe_allow_html=True)
+
+# --- Footer ---
+st.markdown("---")
+st.markdown("🚀 *Developed for BISY2001 Assessment by [Your Name] | Built with Streamlit*", unsafe_allow_html=True)
