@@ -5,7 +5,7 @@ from datetime import datetime
 # --- Config ---
 st.set_page_config(page_title="Smart Parking", layout="centered")
 
-# --- CSS Styling ---
+# --- Styling ---
 st.markdown("""
     <style>
     .main-title {
@@ -27,6 +27,14 @@ st.markdown("""
         color: #117A65;
         margin-top: 40px;
         margin-bottom: 10px;
+    }
+    .prototype-box {
+        background-color: #F2F3F4;
+        padding: 20px;
+        border-radius: 10px;
+        font-family: monospace;
+        font-size: 14px;
+        margin-bottom: 20px;
     }
     .stButton > button {
         background-color: #2E86C1;
@@ -85,7 +93,7 @@ if "bookings" in st.session_state and st.session_state.bookings:
 else:
     st.info("No bookings yet.")
 
-# --- Project Info Section ---
+# --- Design Thinking ---
 st.markdown('<div class="section-title">🧠 Design Thinking Process</div>', unsafe_allow_html=True)
 st.markdown("""
 - **Empathize**: Drivers struggle to find parking in busy areas.  
@@ -95,6 +103,7 @@ st.markdown("""
 - **Test**: Bookings confirmed, saved, and displayed in a clean dashboard view.
 """)
 
+# --- Features ---
 st.markdown('<div class="section-title">📌 Key Features</div>', unsafe_allow_html=True)
 st.markdown("""
 - 📍 Location selector  
@@ -104,18 +113,9 @@ st.markdown("""
 - 📊 Booking history table
 """)
 
+# --- SWOT ---
 st.markdown('<div class="section-title">📊 SWOT Analysis</div>', unsafe_allow_html=True)
 st.markdown("""
 - **Strengths**: Simple UI, fast deployment, low cost  
 - **Weaknesses**: No real-time slot data yet  
 - **Opportunities**: Add QR codes, payments, or real GPS slots  
-- **Threats**: Security if expanded, booking clashes
-""")
-
-# --- Screenshots Placeholder ---
-st.markdown('<div class="section-title">🖼️ App UI Screenshots (optional)</div>', unsafe_allow_html=True)
-st.markdown("You can insert image links or screenshots below if deployed on a custom website or GitHub README.")
-
-# --- Footer ---
-st.markdown("---")
-st.markdown("🚀 *Developed for BISY2001 Assessment by [Your Name] | Built with Streamlit*", unsafe_allow_html=True)
