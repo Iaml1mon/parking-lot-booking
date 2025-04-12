@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
-# Config
+# --- Config ---
 st.set_page_config(page_title="Smart Parking", layout="centered")
 
-# Style
+# --- CSS Styling ---
 st.markdown("""
     <style>
     .main-title {
@@ -20,6 +20,13 @@ st.markdown("""
         color: #5D6D7E;
         text-align: center;
         margin-bottom: 25px;
+    }
+    .section-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #117A65;
+        margin-top: 40px;
+        margin-bottom: 10px;
     }
     .stButton > button {
         background-color: #2E86C1;
@@ -36,13 +43,12 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Header
+# --- Header ---
 st.markdown('<div class="main-title">🅿️ Smart Parking Booking System</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-title">Reserve your parking slot instantly</div>', unsafe_allow_html=True)
 
-# Booking form
-st.markdown("## 📌 Book a Slot")
-
+# --- Booking Form ---
+st.markdown('<div class="section-title">📌 Book a Slot</div>', unsafe_allow_html=True)
 col1, col2 = st.columns(2)
 with col1:
     location = st.selectbox("Select Location", ["Sydney CBD", "Parramatta", "Chatswood", "Homebush"])
@@ -57,7 +63,7 @@ with col4:
 
 booked = st.button("📥 Book Now")
 
-# Booking Logic
+# --- Booking Logic ---
 if booked and plate:
     st.success(f"✅ Booking Confirmed for `{plate}` at **{location}** on **{date}** at **{time.strftime('%I:%M %p')}**")
     if "bookings" not in st.session_state:
@@ -71,14 +77,45 @@ if booked and plate:
 elif booked and not plate:
     st.warning("⚠️ Please enter your car number plate.")
 
-# Show bookings
-st.markdown("## 📋 Your Recent Bookings")
+# --- Show Bookings ---
+st.markdown('<div class="section-title">📋 Your Recent Bookings</div>', unsafe_allow_html=True)
 if "bookings" in st.session_state and st.session_state.bookings:
     df = pd.DataFrame(st.session_state.bookings)
     st.dataframe(df, use_container_width=True)
 else:
     st.info("No bookings yet.")
 
-# Footer
+# --- Project Info Section ---
+st.markdown('<div class="section-title">🧠 Design Thinking Process</div>', unsafe_allow_html=True)
+st.markdown("""
+- **Empathize**: Drivers struggle to find parking in busy areas.  
+- **Define**: There’s no simple way to check real-time availability or reserve parking.  
+- **Ideate**: A web app where users can select a place, date, time, and book easily.  
+- **Prototype**: This app was built using Streamlit + Python + Pandas.  
+- **Test**: Bookings confirmed, saved, and displayed in a clean dashboard view.
+""")
+
+st.markdown('<div class="section-title">📌 Key Features</div>', unsafe_allow_html=True)
+st.markdown("""
+- 📍 Location selector  
+- 📅 Date & time picker  
+- 🚘 Car plate input  
+- ✅ Booking confirmation  
+- 📊 Booking history table
+""")
+
+st.markdown('<div class="section-title">📊 SWOT Analysis</div>', unsafe_allow_html=True)
+st.markdown("""
+- **Strengths**: Simple UI, fast deployment, low cost  
+- **Weaknesses**: No real-time slot data yet  
+- **Opportunities**: Add QR codes, payments, or real GPS slots  
+- **Threats**: Security if expanded, booking clashes
+""")
+
+# --- Screenshots Placeholder ---
+st.markdown('<div class="section-title">🖼️ App UI Screenshots (optional)</div>', unsafe_allow_html=True)
+st.markdown("You can insert image links or screenshots below if deployed on a custom website or GitHub README.")
+
+# --- Footer ---
 st.markdown("---")
-st.markdown("💡 *Powered by Streamlit | Developed for BISY2001 Project*", unsafe_allow_html=True)
+st.markdown("🚀 *Developed for BISY2001 Assessment by [Your Name] | Built with Streamlit*", unsafe_allow_html=True)
