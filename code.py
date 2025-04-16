@@ -17,7 +17,7 @@ location_rates = {
 
 # --- Title ---
 st.title("🅿️ Smart Parking Booking System")
-st.caption("Inspired by Wilson Parking • Real-time booking + pricing")
+st.caption("Real-time booking + pricing")
 
 # --- Booking Form ---
 st.header("📌 Book Your Slot")
@@ -66,4 +66,4 @@ else:
 
 # --- Footer ---
 st.markdown("---")
-st.markdown("🚀 Built with Streamlit | Wilson-style Parking UI by [Your Name]", unsafe_allow_html=True)
+st.markdown("🚀 Built with Streamlit", unsafe_allow_html=True)
