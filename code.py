@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
-st.set_page_config(page_title="Smart Parking", layout="wide")
+st.set_page_config(page_title="Smart Parking Booking", layout="wide")
 
-# --- Configuration ---
+# --- Parking locations and details ---
 locations = {
     "Sydney CBD": {"rate": 8.0, "slots": 20},
     "Parramatta": {"rate": 5.5, "slots": 15},
@@ -14,7 +14,7 @@ locations = {
 
 ROWS, COLS = 4, 5
 
-# --- Session State Setup ---
+# --- Session Setup ---
 if "bookings" not in st.session_state:
     st.session_state.bookings = []
 
@@ -37,14 +37,15 @@ with st.sidebar:
     available_slots = total_slots - booked_slots
 
     plate = st.text_input("Car Plate Number", max_chars=10)
-    duration = st.slider("Parking Duration (hrs)", 1, 8, 2)
+    duration_text = st.text_input("Parking Duration in Hours (e.g. 2)")
     date = st.date_input("Date", datetime.today())
 
-    st.markdown(f"**💸 Rate/hr:** ${rate}  \n**🚗 Slots Available:** {available_slots}/{total_slots}")
+    st.markdown(f"**💸 Rate/hr:** ${rate}")
+    st.markdown(f"**🚗 Slots Available:** {available_slots}/{total_slots}")
 
-# --- Grid UI ---
-st.title("🅿️ Smart Parking Slot Booking")
-st.subheader(f"📍 {location} Parking Slots")
+# --- Parking Grid ---
+st.title("🅿️ Smart Parking Grid")
+st.subheader(f"📍 Location: {location}")
 
 slot_no = 1
 for r in range(ROWS):
@@ -68,7 +69,10 @@ if st.session_state.selected_slot:
     if st.button("📥 Confirm Booking"):
         if plate.strip() == "":
             st.warning("Please enter your car plate.")
+        elif not duration_text.isdigit():
+            st.warning("Enter a valid number of hours (e.g. 1, 2, 3)")
         else:
+            duration = int(duration_text)
             slot = st.session_state.selected_slot
             st.session_state.slot_data[location]["booked"].append(slot)
             total = rate * duration
@@ -81,10 +85,10 @@ if st.session_state.selected_slot:
                 "Rate/hr": f"${rate:.2f}",
                 "Total": f"${total:.2f}"
             })
-            st.success(f"🎉 Booking Confirmed for {plate.upper()} at {location}, Slot {slot}")
+            st.success(f"🎉 Booking Confirmed: {plate.upper()} → {slot} at {location}")
             st.session_state.selected_slot = None
 
-# --- Booking Table ---
+# --- Booking History ---
 st.subheader("📋 Booking Summary")
 if st.session_state.bookings:
     df = pd.DataFrame(st.session_state.bookings)
@@ -92,10 +96,10 @@ if st.session_state.bookings:
 else:
     st.info("No bookings yet.")
 
-# --- Reset Option ---
+# --- Reset ---
 with st.sidebar:
     if st.button("🔄 Reset All Bookings"):
         for loc in st.session_state.slot_data:
             st.session_state.slot_data[loc]["booked"] = []
         st.session_state.bookings = []
-        st.success("System reset complete.")
+        st.success("All bookings and slots have been reset.")
