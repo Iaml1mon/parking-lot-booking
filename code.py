@@ -66,4 +66,4 @@ else:
 
 # --- Footer ---
 st.markdown("---")
-st.markdown("🚀 Built with Streamlit", unsafe_allow_html=True)
+st.markdown("🚀 Built with Streamlit By Limon Sheikh", unsafe_allow_html=True)
